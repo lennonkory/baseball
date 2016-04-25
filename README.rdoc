@@ -1,11 +1,11 @@
 == README
+The idea behind this website is to have a better way for fantasy baseball players to understand the value of their players. Projections as to what their players will do in the year are important, however, most mainstream stats sites offer no projections or projections that are based on only the current year. This can lead to useless projections. An example of this would be if a player hits a homerun in the first game of the season, they will be projected to hit 162 homeruns that year, which is clearly not going to happen. This site will use stats from previous years to produce a better projection. It will also allow the user to save their favourite players for easy and fast look up.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is in its initial steps. More will be added to the readme as the project progresses.
 
-Things you may want to cover:
+* Ruby version: 2.2.4
 
-* Ruby version
+* Rails version: 4.2.6
 
 * System dependencies
 
@@ -24,5 +24,4 @@ Things you may want to cover:
 * ...
 
 
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
