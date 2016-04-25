@@ -1,10 +1,10 @@
 <h1>INDEX</h1>
 
 <% @players.each do |p| %>
-<%= link_to p.name, player_path(p) %>
-<div class="row">
-	<div>	
-		<img src= <%= p.picture %> >
+	<%= link_to p.firstname + " " + p.lastname, player_path(p) %>
+	<div class="row">
+		<div>	
+			<img src= <%= p.picture %> >
+		</div>
 	</div>
-</div>
 <% end %>

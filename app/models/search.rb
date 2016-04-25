@@ -2,7 +2,7 @@ class Search
 
   def searchByUrl(url)
 
-    doc = Nokogiri::HTML(open('http://www.baseball-reference.com/'+url.to_s))
+    doc = Nokogiri::HTML(open(url.to_s))
 
     items = doc.css('img.border').map{|link| link['src']}
     picture = items[0].to_s
@@ -16,10 +16,6 @@ class Search
     }
     a.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    #page = a.get 'http://mlb.mlb.com/mlb/players/?tcid=mm_mlb_players/'
-    #search_form = page.form_with :name => "searchforplayer1"
-    #search_form.field_with(:name => "q").value = "Bautista"
-
     page = a.get 'http://www.baseball-reference.com//'
     search_form = page.form_with :name => "f"
 
@@ -29,31 +25,30 @@ class Search
 
     uri = search_results.uri
 
-    puts "URI"
-    puts uri.to_s
-    puts "URI"
-
+    #more than one player was found
     if uri.to_s.include? "search"
-      puts "SEARCHING"
+
       doc = Nokogiri::HTML(open(uri))
    
       l = doc.css('div.search-item-name a').map { |link| link }
 
-      dic = Hash.new
+      id_list = Array.new
 
       l.each{|i|
+
         link = i['href']
         if link.include? "player" and link.include? "shtml" 
-          puts link
-          keys = i.text.strip.to_s.split("\n")
-          key = keys[0] + " " + keys[1].delete("\t")
-          dic[key] = link
-
+          ref = "http://www.baseball-reference.com/" + link
+          names = name.split(" ")
+          p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: ref , picture: searchByUrl(ref))
+          p.save
+          Stat.new.searchForStats(ref, p.id)
+          id_list.push(p.id)
         end
         
       }
-      puts "END"
-      return dic
+
+      return id_list
 
     end
 
@@ -65,5 +60,15 @@ class Search
 
     items = doc.css('img.border').map{|link| link['src']}
     picture = items[0].to_s
+
+    names = name.split(" ")
+    p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: uri.to_s , picture: picture)
+    p.save
+    
+    Stat.new.searchForStats(uri.to_s, p.id)
+    
+    return p.id
+
   end
+
 end

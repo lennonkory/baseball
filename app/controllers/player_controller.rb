@@ -6,30 +6,23 @@ class PlayerController < ApplicationController
 
 	def create
 
-		p = Player.where(name: params[:name])
+		names = params[:name].split(" ")
 
-		if p.length == 1
-			redirect_to player_path(p[0])
-		elsif p.length > 1
-			p.each{|i| puts i.name}
+		players = Player.where(firstname: names[0].capitalize).where(lastname: names[1].capitalize)
+
+		if players.length == 1
+			redirect_to player_path(players[0])
+		elsif players.length > 1
 	    	redirect_to action: "index", name: params[:name]
 	    else
 	    	
-	    	p = Search.new.searchForPlayer(params[:name])
+	    	p_ids = Search.new.searchForPlayer(params[:name])
 
-			if p.is_a?(String)
-				@player = Player.new(name: params[:name], picture: p)
-				@player.save
+			if p_ids.is_a?(Integer)
+				@player = Player.find(p_ids)
 				redirect_to player_path(@player)	
 			else
-				s = Search.new
-				p.each{|k,v|
-					pic = s.searchByUrl(v)
-					info = k.split(" ")
-					@player = Player.new(name: info[0] + " " + info[1], picture: pic)
-					@player.save
-				}
-				redirect_to action: "index", name: params[:name]
+				redirect_to action: "index", id: p_ids
 			end
 			
 		end
@@ -42,7 +35,12 @@ class PlayerController < ApplicationController
 
 	def index
 
-		@players = Player.where(name: params[:name])
+		if params[:name]
+			names = params[:name].split(" ")
+			@players = Player.where(firstname: names[0].capitalize).where(lastname: names[1].capitalize)
+		else
+			@players = Player.where(id: params[:id])
+		end
 
 	end
 

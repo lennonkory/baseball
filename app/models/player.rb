@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
 	
-  validates :name, presence: true
-
+  validates :lastname, presence: true
+  has_many :stats, dependent: :destroy
 
 end

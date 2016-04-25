@@ -11,12 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425010051) do
+ActiveRecord::Schema.define(version: 20160425221338) do
 
   create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.string "year"
+    t.string "firstname"
+    t.string "lastname"
     t.string "picture"
+    t.string "url"
+    t.string "team"
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "year"
+    t.integer "age"
+    t.string  "team"
+    t.string  "lg"
+    t.integer "games"
+    t.integer "pa"
+    t.integer "ab"
+    t.integer "r"
+    t.integer "h"
+    t.integer "second_base"
+    t.integer "third_base"
+    t.integer "hr"
+    t.integer "rbi"
+    t.integer "sb"
+    t.integer "cs"
+    t.integer "bb"
+    t.integer "so"
+    t.float   "ba"
+    t.float   "obp"
+    t.float   "slg"
+    t.float   "ops"
+    t.integer "player_id"
   end
 
 end

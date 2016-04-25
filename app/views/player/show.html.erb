@@ -1,3 +1,56 @@
-<h1 align = "center">Show Welcome to <%= @player.name %></h1>
-<h2><%= @player.picture %> </h2>
+<h1 align = "center">Show Welcome to <%= @player.firstname + " " + @player.lastname%></h1>
+
 <img src= <%= @player.picture %> >
+
+<div>
+	<table class="table table-hover">
+		<tr>
+			<th>Year</th>
+			<th>Age</th>
+			<th>Tm</th>
+			<th>Lg</th>
+			<th>G</th>
+			<th>PA</th>
+			<th>AB</th>
+			<th>R</th>
+			<th>H</th>
+			<th>2B</th>
+			<th>3B</th>
+			<th>HR</th>
+			<th>RBI</th>
+			<th>SB</th>
+			<th>CS</th>
+			<th>BB</th>
+			<th>SO</th>
+			<th>BA</th>
+			<th>OBP</th>
+			<th>SLG</th>
+			<th>OPS</th>
+		</tr>
+		<% Stat.where(player_id: @player.id).each do |s| %>
+		<tr>
+			<td><%= s.year %></td>
+			<td><%= s.age %></td>
+			<td><%= s.team %></td>
+			<td><%= s.lg %></td>
+			<td><%= s.games %></td>
+			<td><%= s.pa %></td>
+			<td><%= s.ab %></td>
+			<td><%= s.r %></td>
+			<td><%= s.h %></td>
+			<td><%= s.second_base %></td>
+			<td><%= s.third_base %></td>
+			<td><%= s.hr %></td>
+			<td><%= s.rbi %></td>
+			<td><%= s.sb %></td>
+			<td><%= s.cs %></td>
+			<td><%= s.bb %></td>
+			<td><%= s.so %></td>
+			<td><%= s.ba %></td>
+			<td><%= s.obp %></td>
+			<td><%= s.slg %></td>
+			<td><%= s.ops %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
