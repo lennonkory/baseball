@@ -8,14 +8,17 @@ class PlayerController < ApplicationController
 
 		names = params[:name].split(" ")
 
-		players = Player.where(firstname: names[0].capitalize).where(lastname: names[1].capitalize)
+		players = []
+
+		if names.length != 1
+			players = Player.where(firstname: names[0].capitalize).where(lastname: names[1].capitalize)
+		end 
 
 		if players.length == 1
 			redirect_to player_path(players[0])
 		elsif players.length > 1
 	    	redirect_to action: "index", name: params[:name]
-	    else
-	    	
+	    else	    	
 	    	p_ids = Search.new.searchForPlayer(params[:name])
 
 			if p_ids.is_a?(Integer)

@@ -98,13 +98,19 @@ class Stat < ActiveRecord::Base
       stats.ops = t[20].delete(" ").to_f
 
       stats.hbp = t[24].delete(" ").to_i
-      stats.sh = t[25].delete(" ").to_i  
-      stats.sf = t[26].delete(" ").to_i
+      stats.sh = t[25].delete(" ").to_i
+      begin  
+        stats.sf = t[26].delete(" ").to_i
+      rescue
+        puts "OH NO"
+        stats.sf = 0
+      end
 
       stats.player_id = id.to_i
       stats.save
 
     }
+
 
     totalstats(id)
 

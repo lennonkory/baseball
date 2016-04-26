@@ -39,8 +39,10 @@ class Search
         link = i['href']
         if link.include? "player" and link.include? "shtml" 
           ref = "http://www.baseball-reference.com/" + link
-          names = name.split(" ")
-          p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: ref , picture: searchByUrl(ref))
+
+          names = i.text.strip.to_s.split("\n")[0]
+          names = names.split(' ')
+          p = Player.new(firstname: names[0], lastname: names[1], url: ref , picture: searchByUrl(ref))
           p.save
           Stat.new.searchForStats(ref, p.id)
           id_list.push(p.id)
@@ -65,7 +67,12 @@ class Search
     p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: uri.to_s , picture: picture)
     p.save
     
-    Stat.new.searchForStats(uri.to_s, p.id)
+    #fix this
+    begin
+      Stat.new.searchForStats(uri.to_s, p.id)
+    rescue
+      puts "ERROR"
+    end
     
     return p.id
 
