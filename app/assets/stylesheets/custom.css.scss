@@ -14,3 +14,33 @@ $navbar-default-bg: black;
 .search-field{
 	margin-top: 15px;
 }
+
+
+.stats-table table{
+	border: 3px solid black;
+	width: 95%;
+}
+
+.stats-table tr{
+	border: 1px solid black;
+}
+
+.stats-table tr td{
+	border: 2px solid black;
+	text-align: center;
+}
+
+.stats-table tr:hover{
+	background-color: #ddd;
+}
+
+.table-stats td:hover{
+	background-color: #ffff00;
+	font-weight: bold;
+}
+
+.table-head th{
+	border: 2px solid black;
+	background-color: #0059f1;
+	text-align: center;
+}

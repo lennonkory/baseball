@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425221338) do
+ActiveRecord::Schema.define(version: 20160426153939) do
 
   create_table "players", force: :cascade do |t|
     t.string "firstname"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160425221338) do
   end
 
   create_table "stats", force: :cascade do |t|
-    t.integer "year"
+    t.string  "year"
     t.integer "age"
     t.string  "team"
     t.string  "lg"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20160425221338) do
     t.float   "slg"
     t.float   "ops"
     t.integer "player_id"
+    t.integer "hbp"
+    t.integer "sh"
+    t.integer "sf"
   end
 
 end
