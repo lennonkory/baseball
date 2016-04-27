@@ -1,5 +1,7 @@
 <h1>INDEX</h1>
 
+<h2>Players Found: <%= @players.length %> </h2> 
+
 <% @players.each do |p| %>
 	<%= link_to p.firstname + " " + p.lastname, player_path(p) %>
 	<div class="row">

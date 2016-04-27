@@ -15,7 +15,6 @@ $navbar-default-bg: black;
 	margin-top: 15px;
 }
 
-
 .stats-table table{
 	border: 3px solid black;
 	width: 95%;
@@ -42,5 +41,37 @@ $navbar-default-bg: black;
 .table-head th{
 	border: 2px solid black;
 	background-color: #0059f1;
+	text-align: center;
+}
+
+.total-table table{
+	border: 3px solid black;
+	width: 95%;
+
+}
+
+.table-head-total th{	
+	text-align: center;
+}
+
+.table-head-total th:nth-child(1){
+	text-align: center;
+}
+
+.table-head-total th:nth-child(n+5){
+	border: 2px solid black;
+	text-align: center;
+	background-color: #0059f1;
+}
+
+.table-row-total{
+	border: 2px solid black;
+}
+.table-row-total td:nth-child(1){
+	text-align: center;
+	padding-left: 40px;
+}
+.table-row-total td:nth-child(n+5){
+	border: 2px solid black;
 	text-align: center;
 }
