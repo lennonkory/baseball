@@ -1,0 +1,77 @@
+<div align='center' class="stats-table">
+	<table class="table">
+		<tr class="table-head">
+			<th>Year</th>
+			<th>Age</th>
+			<th>Tm</th>
+			<th>Lg</th>
+			<th>G</th>
+			<th>PA</th>
+			<th>AB</th>
+			<th>R</th>
+			<th>H</th>
+			<th>2B</th>
+			<th>3B</th>
+			<th>HR</th>
+			<th>RBI</th>
+			<th>SB</th>
+			<th>CS</th>
+			<th>BB</th>
+			<th>SO</th>
+			<th>BA</th>
+			<th>OBP</th>
+			<th>SLG</th>
+			<th>OPS</th>
+		</tr>
+
+		<% Batter.where(player_id: @player.id).where.not(year: "Total").each do |s| %>
+			<tr class="table-stats">
+				<td><%= s.year %></td>
+				<td><%= s.age %></td>
+				<td><%= s.team %></td>
+				<td><%= s.lg %></td>
+				<td><%= s.games %></td>
+				<td><%= s.pa %></td>
+				<td><%= s.ab %></td>
+				<td><%= s.r %></td>
+				<td><%= s.h %></td>
+				<td><%= s.second_base %></td>
+				<td><%= s.third_base %></td>
+				<td><%= s.hr %></td>
+				<td><%= s.rbi %></td>
+				<td><%= s.sb %></td>
+				<td><%= s.cs %></td>
+				<td><%= s.bb %></td>
+				<td><%= s.so %></td>
+				<td><%= "#{format("%.3f",s.ba)}" %></td>
+				<td><%= "#{format("%.3f",s.obp)}" %></td>
+				<td><%= "#{format("%.3f",s.slg)}" %></td>
+				<td><%= "#{format("%.3f",s.ops)}" %></td>
+			</tr>
+		<% end %>
+		<tr class="table-total">
+		<% total = Batter.where(player_id: @player.id).where(year: "Total")[0] %>
+			<td>Total</td>
+			<td><%= %></td>
+			<td><%= %></td>
+			<td><%=  %></td>
+			<td><%= total.games %></td>
+			<td><%= total.pa %></td>
+			<td><%= total.ab %></td>
+			<td><%= total.r %></td>
+			<td><%= total.h %></td>
+			<td><%= total.second_base %></td>
+			<td><%= total.third_base %></td>
+			<td><%= total.hr %></td>
+			<td><%= total.rbi %></td>
+			<td><%= total.sb %></td>
+			<td><%= total.cs %></td>
+			<td><%= total.bb %></td>
+			<td><%= total.so %></td>
+			<td><%= "#{format("%.3f",total.ba)}" %></td>
+			<td><%= "#{format("%.3f",total.obp)}" %></td>
+			<td><%= "#{format("%.3f",total.slg)}" %></td>
+			<td><%= "#{format("%.3f",total.ops)}" %></td>
+		</tr>
+	</table>
+</div>

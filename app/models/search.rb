@@ -39,12 +39,16 @@ class Search
         link = i['href']
         if link.include? "player" and link.include? "shtml" 
           ref = "http://www.baseball-reference.com/" + link
-
+          pos = doc.xpath("//span[contains(@itemprop,'role')]").text.strip
           names = i.text.strip.to_s.split("\n")[0]
           names = names.split(' ')
-          p = Player.new(firstname: names[0], lastname: names[1], url: ref , picture: searchByUrl(ref))
+          p = Player.new(firstname: names[0], lastname: names[1], url: ref , picture: searchByUrl(ref), position: pos)
           p.save
-          Stat.new.searchForStats(ref, p.id)
+          if pos == "Pitcher"
+            Pitcher.new.stats(doc, p.id)
+          else
+            Batter.new.stats(doc, p.id)
+          end
           id_list.push(p.id)
         end
         
@@ -63,15 +67,16 @@ class Search
     items = doc.css('img.border').map{|link| link['src']}
     picture = items[0].to_s
 
+    pos = doc.xpath("//span[contains(@itemprop,'role')]").text.strip
+
     names = name.split(" ")
-    p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: uri.to_s , picture: picture)
+    p = Player.new(firstname: names[0].capitalize, lastname: names[1].capitalize, url: uri.to_s , picture: picture, position: pos)
     p.save
     
-    #fix this
-    begin
-      Stat.new.searchForStats(uri.to_s, p.id)
-    rescue
-      puts "ERROR"
+    if pos == "Pitcher"
+      Pitcher.new.stats(doc, p.id)
+    else
+      Batter.new.stats(doc, p.id)
     end
     
     return p.id
