@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 20160427020628) do
     t.integer "h"
   end
 
+  create_table "batterstats", force: :cascade do |t|
+  end
+
   create_table "pitchers", force: :cascade do |t|
     t.string  "year"
     t.integer "age"
@@ -68,6 +71,9 @@ ActiveRecord::Schema.define(version: 20160427020628) do
     t.integer "wp"
     t.float   "whip"
     t.integer "player_id"
+  end
+
+  create_table "pitcherstats", force: :cascade do |t|
   end
 
   create_table "players", force: :cascade do |t|

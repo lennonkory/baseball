@@ -37,19 +37,29 @@ class Search
       l.each{|i|
 
         link = i['href']
+        
         if link.include? "player" and link.include? "shtml" 
+          
           ref = "http://www.baseball-reference.com/" + link
+          doc = Nokogiri::HTML(open(ref))
+
+          items = doc.css('img.border').map{|link| link['src']}
           pos = doc.xpath("//span[contains(@itemprop,'role')]").text.strip
+
           names = i.text.strip.to_s.split("\n")[0]
           names = names.split(' ')
-          p = Player.new(firstname: names[0], lastname: names[1], url: ref , picture: searchByUrl(ref), position: pos)
+
+
+          p = Player.new(firstname: names[0], lastname: names[1], url: ref , picture: items[0].to_s, position: pos)
           p.save
+
           if pos == "Pitcher"
             Pitcher.new.stats(doc, p.id)
           else
             Batter.new.stats(doc, p.id)
           end
           id_list.push(p.id)
+
         end
         
       }
