@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   get 'show', to: "home#show"
 
   resources :player
+  resources :users
+
+  get 'login', to: "sessions#new"
+  post 'login', to: "sessions#create"
+  delete 'logout', to: "sessions#destroy"
+
+  post 'favourite', to: 'player#favourite'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

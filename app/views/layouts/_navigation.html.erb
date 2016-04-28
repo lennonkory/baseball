@@ -28,11 +28,12 @@
           </ul>
         </li>
       </ul>
-
-      <%= form_tag("/player", method: "post", :html => {class: "navbar-form navbar-left", role: "search"}) do %>
-        <%= text_field_tag :name, nil, placeholder: 'Search Player',class:'search-field' %>
-        <%= submit_tag("Search", class:"btn btn-default") %>
-      <% end %>
+      <div id='player-lookup'>
+        <%= form_tag("/player", method: "post", :html => {class: "navbar-form navbar-left", role: "search",id: 'player_lookup_form'}) do %>
+          <%= text_field_tag :name, nil, placeholder: 'Search Player',class:'search-field' %>
+          <%= submit_tag("Search", class:"btn btn-default") %>
+        <% end %>
+      </div>
       
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -1,4 +1,5 @@
 <div align='center' class="stats-table">
+	
 	<table class="table">
 		<tr class="table-head">
 			<th>Year</th>
@@ -59,65 +60,34 @@
 
 	<% end %>
 	
-	</table>
-</div>
-
-<div align='center' class="total-table">
-	<table class="table">
-		<tr class="table-head-total">
-			<th>Total</th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th>W</th>
-			<th>L</th>
-			<th>W-L%</th>
-			<th>ERA</th>
-			<th>G</th>
-			<th>GS</th>
-			<th>GF</th>
-			<th>CG</th>
-			<th>SHO</th>
-			<th>SV</th>
-			<th>IP</th>
-			<th>H</th>
-			<th>R</th>
-			<th>ER</th>
-			<th>HR</th>
-			<th>BB</th>
-			<th>SO</th>
-			<th>HBP</th>
-			<th>BK</th>
-			<th>WP</th>
-			<th>WHIP</th>
-		</tr>
+	<% total = Pitcher.where(player_id: @player.id).where(year: "Total")[0] %>
 		<tr class="table-row-total">
-		<% total = Pitcher.where(player_id: @player.id).where(year: "Total")[0] %>
-			<td class="nice-border">Total</td>
-			<td border=0 ><%= %></td>
-			<td><%= %></td>
-			<td class="no-border"><%=  %></td>
-			<td class="nice-border"><%= total.w %></td>
-			<td class="nice-border"><%= total.l %></td>
-			<td class="nice-border"><%= "#{format("%.3f",total.wl)}" %></td>
-			<td class="nice-border"><%= "#{format("%.2f",total.era)}" %></td>
-			<td class="nice-border"><%= total.games %></td>
-			<td class="nice-border"><%= total.gs %></td>
-			<td class="nice-border"><%= total.gf %></td>
-			<td class="nice-border"><%= total.cg %></td>
-			<td class="nice-border"><%= total.sho %></td>
-			<td class="nice-border"><%= total.sv %></td>
-			<td class="nice-border"><%= "#{format("%.1f", total.ip)}" %></td>
-			<td class="nice-border"><%= total.h %></td>
-			<td class="nice-border"><%= total.r %></td>
-			<td class="nice-border"><%= total.er %></td>
-			<td class="nice-border"><%= total.hr %></td>
-			<td class="nice-border"><%= total.bb %></td>
-			<td class="nice-border"><%= total.so %></td>
-			<td class="nice-border"><%= total.hbp %></td>
-			<td class="nice-border"><%= total.bk %></td>
-			<td class="nice-border"><%= total.wp %></td>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><%= total.w %></td>
+			<td><%= total.l %></td>
+			<td><%= "#{format("%.3f",total.wl)}" %></td>
+			<td><%= "#{format("%.2f",total.era)}" %></td>
+			<td><%= total.games %></td>
+			<td><%= total.gs %></td>
+			<td><%= total.gf %></td>
+			<td><%= total.cg %></td>
+			<td><%= total.sho %></td>
+			<td><%= total.sv %></td>
+			<td><%= "#{format("%.1f", total.ip)}" %></td>
+			<td><%= total.h %></td>
+			<td><%= total.r %></td>
+			<td><%= total.er %></td>
+			<td><%= total.hr %></td>
+			<td><%= total.bb %></td>
+			<td><%= total.so %></td>
+			<td><%= total.hbp %></td>
+			<td><%= total.bk %></td>
+			<td><%= total.wp %></td>
 			<td><%= "#{format("%.3f",total.whip)}" %></td>
 		</tr>
+	
 	</table>
 </div>

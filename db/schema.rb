@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427020628) do
+ActiveRecord::Schema.define(version: 20160428171844) do
 
   create_table "batters", force: :cascade do |t|
     t.integer "second_base"
@@ -41,7 +41,9 @@ ActiveRecord::Schema.define(version: 20160427020628) do
     t.integer "h"
   end
 
-  create_table "batterstats", force: :cascade do |t|
+  create_table "favourites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "player_id"
   end
 
   create_table "pitchers", force: :cascade do |t|
@@ -73,9 +75,6 @@ ActiveRecord::Schema.define(version: 20160427020628) do
     t.integer "player_id"
   end
 
-  create_table "pitcherstats", force: :cascade do |t|
-  end
-
   create_table "players", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -88,6 +87,13 @@ ActiveRecord::Schema.define(version: 20160427020628) do
 
   create_table "stats", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

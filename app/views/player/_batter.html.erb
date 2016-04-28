@@ -1,3 +1,4 @@
+
 <div align='center' class="stats-table">
 	<table class="table">
 		<tr class="table-head">
@@ -49,8 +50,9 @@
 				<td><%= "#{format("%.3f",s.ops)}" %></td>
 			</tr>
 		<% end %>
-		<tr class="table-total">
+
 		<% total = Batter.where(player_id: @player.id).where(year: "Total")[0] %>
+		<tr class="table-row-total">
 			<td>Total</td>
 			<td><%= %></td>
 			<td><%= %></td>

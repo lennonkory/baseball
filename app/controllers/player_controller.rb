@@ -47,4 +47,20 @@ class PlayerController < ApplicationController
 
 	end
 
+	def favourite
+		
+		id = params[:player_id]
+		@player = Player.find(id)
+
+		f = Favourite.new(user_id: current_user.id, player_id: id)
+
+		if f.save
+			puts "Saved"
+		end
+
+
+		redirect_to player_path(@player)
+
+	end
+
 end

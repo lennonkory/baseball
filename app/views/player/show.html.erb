@@ -2,6 +2,17 @@
 
 <img src= <%= @player.picture %> >
 
+<%= form_tag favourite_path, method: :post do %>
+ <%= hidden_field_tag('player_id', @player.id)%>
+ <%= submit_tag("cat") %>
+<% end %>
+	<div align="left" class="container">
+	
+	 <%= check_box_tag(id = "toggle1", checked = false,value =  @player.id) %>
+	 <label for="toggle1">Favourite</label>
+	</div>
+
+
 <% if @player.position == "Pitcher" %>
 	<%= render "pitcher" %>
 <%else%>
