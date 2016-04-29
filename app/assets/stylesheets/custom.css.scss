@@ -127,3 +127,15 @@ $navbar-default-bg: black;
 .container input:checked + label::before {
   background-color: #8cff1a;
 }
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:15px !important; padding-bottom:10px !important;
+    height: 20px;
+}
+
+
+.navbar {min-height:20px !important;max-height:50px !important;}
+
+.right-side{
+  padding-bottom:10px !important;
+}
