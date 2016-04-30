@@ -2,11 +2,12 @@
 
 <img src= <%= @player.picture %> >
 
-<%= form_tag favourite_path, method: :post do %>
- <%= hidden_field_tag('player_id', @player.id)%>
-<% b = Favourite.where(user_id: current_user.id).find_by(player_id: @player.id) %>
- <%= submit_tag(b.nil? ? "Add to favourites?" : "Remove form favourites?") %>
-
+<%if !current_user.nil?%>
+	<%= form_tag favourite_path, method: :post do %>
+	 <%= hidden_field_tag('player_id', @player.id)%>
+		<% b = Favourite.where(user_id: current_user.id).find_by(player_id: @player.id) %>
+	 <%= submit_tag(b.nil? ? "Add to favourites?" : "Remove from favourites?") %>
+	<% end %>
 <% end %>
 
 <% if @player.position == "Pitcher" %>
