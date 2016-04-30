@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428171844) do
+ActiveRecord::Schema.define(version: 20160430175917) do
 
   create_table "batters", force: :cascade do |t|
     t.integer "second_base"
+    t.string  "year"
     t.integer "third_base"
     t.integer "hr"
     t.integer "rbi"
@@ -30,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160428171844) do
     t.float   "slg"
     t.float   "ops"
     t.integer "player_id"
-    t.string  "year"
     t.integer "age"
     t.string  "team"
     t.string  "lg"
@@ -83,10 +83,6 @@ ActiveRecord::Schema.define(version: 20160428171844) do
     t.string "team"
     t.string "position"
     t.string "year"
-  end
-
-  create_table "stats", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

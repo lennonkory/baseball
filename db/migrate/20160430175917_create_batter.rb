@@ -1,7 +1,9 @@
 class CreateBatter < ActiveRecord::Migration
   def change
     create_table :batters do |t|
-    	t.integer :second_base
+
+        t.integer :second_base
+        t.string :year
         t.integer :third_base
         t.integer :hr
         t.integer :rbi
@@ -17,7 +19,14 @@ class CreateBatter < ActiveRecord::Migration
         t.float :slg
         t.float :ops
         t.integer :player_id
-
+        t.integer :age
+	    t.string :team
+	    t.string :lg
+	    t.integer :games
+	    t.integer :pa
+	    t.integer :ab
+	    t.integer :r
+	    t.integer :h
     end
   end
 end

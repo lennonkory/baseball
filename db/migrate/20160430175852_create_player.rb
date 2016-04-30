@@ -7,6 +7,7 @@ class CreatePlayer < ActiveRecord::Migration
         t.string :url
         t.string :team
         t.string :position
+        t.string :year
     end
   end
 end

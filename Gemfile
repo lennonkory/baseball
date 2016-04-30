@@ -12,7 +12,7 @@ gem 'execjs'
 gem "paperclip", "~> 4.1.1"
 gem 'mechanize'
 gem 'nokogiri'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 gem 'will_paginate', '3.0.7'
 

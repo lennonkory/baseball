@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :player
   resources :users
 
+  get 'home', to: "user#show"
+
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"
   delete 'logout', to: "sessions#destroy"
