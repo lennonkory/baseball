@@ -1,0 +1,18 @@
+<table class="table">
+	<tr class="table-head">
+        <th>Year</th>
+        <th>G</th>
+		<th>HR</th>
+		<th>RBI</th>
+	</tr>
+	<% s = Batter.where(year: Time.now.year).find_by(player_id: id) %>
+    <% if s == nil %>
+        <% s = Batter.where(year: 'Total').find_by(player_id: id) %>
+    <% end %>
+	<tr class="table-stats">
+        <td><%= s.year %></td>
+		<td><%= s.games %></td>
+		<td><%= s.hr %></td>
+		<td><%= s.rbi %></td>
+	</tr>
+</table>

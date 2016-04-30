@@ -52,14 +52,21 @@ class PlayerController < ApplicationController
 		id = params[:player_id]
 		@player = Player.find(id)
 
-		f = Favourite.new(user_id: current_user.id, player_id: id)
+		b = Favourite.where(user_id: current_user.id).find_by(player_id: id)
 
-		if f.save
-			puts "Saved"
+		if b.nil?
+
+			f = Favourite.new(user_id: current_user.id, player_id: id)
+
+			if f.save
+				puts "Saved"
+				puts id
+			end
+		else
+			b.destroy
 		end
 
-
-		redirect_to player_path(@player)
+		redirect_to user_path(current_user)
 
 	end
 

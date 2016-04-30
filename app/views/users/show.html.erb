@@ -1,9 +1,17 @@
 <h1 align = "center">Welcome to <%= @user.username%>'s page</h1>
+
 <div class="row">
   <div class="col-md-4 col-md-offset-4 center">
     <% Favourite.where(user_id: @user.id).each do|player| %>
     	<% p = Player.find(player.player_id) %>
-    	<%= link_to p.firstname + " " +  p.lastname, player_path(p) %>
+    	<ul class="favourite-players">
+    		<li><img src=<%= p.picture %>> <%= link_to p.firstname + " " +  p.lastname, player_path(p) %></li>
+    		<% if p.position == "Pitcher" %>
+    			<%= render 'pitcher', id: p.id %>
+    		<% else %>
+    			<%= render 'batter', id: p.id %>
+    		<% end %>
+    	</ul>
     <% end %>
   </div>
 </div>

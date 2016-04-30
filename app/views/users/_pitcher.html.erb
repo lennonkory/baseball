@@ -1,0 +1,25 @@
+
+<table class="table">
+	<tr class="table-head">
+		<th>Year</th>
+		<th>
+			G
+		</th>
+		<th>
+			W
+		</th>
+		<th>
+			L
+		</th>
+	</tr>
+	<% s = Pitcher.where(year: Time.now.year).find_by(player_id: id) %>
+	<% if s == nil %>
+		<% s = Pitcher.where(year: 'Total').find_by(player_id: id) %>
+	<% end %>
+	<tr class="table-stats">
+		<td><%= s.year %></td>
+		<td><%= s.games %></td>
+		<td><%= s.w %></td>
+		<td><%= s.l %></td>
+	</tr>
+</table>
