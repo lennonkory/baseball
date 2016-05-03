@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+	before_action :set_user, only: [:edit, :update, :show]
+ 	before_action :require_same_user, only:[:edit, :update, :show]
+
 	def index
 	end
 
@@ -28,5 +31,21 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:username, :password, :password_confirmation)
 	end
+
+	def set_user
+	    @user = User.find(params[:id])
+	  end
+
+  def require_same_user
+
+  	if current_user.nil?
+  		flash[:danger] = "You can not edit this profile"
+  		redirect_to root_path
+
+    elsif current_user != @user
+      flash[:danger] = "You can not edit this profile"
+      redirect_to user_path(current_user)
+    end
+  end
 
 end

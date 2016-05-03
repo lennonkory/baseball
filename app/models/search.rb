@@ -93,4 +93,29 @@ class Search
 
   end
 
+  def updateStats(players)
+    
+    if players.class == Player::ActiveRecord_Relation #more than one player
+
+      players.each do |player|
+        if player.position == "Pitcher"
+          Pitcher.new.updateStats(player)
+        else
+          Batter.new.updateStats(player)
+        end
+      end
+    
+    else #only one player
+
+      if players.position == "Pitcher"
+        Pitcher.new.updateStats(players)
+      else
+        Batter.new.updateStats(players)
+      end
+    end
+
+
+
+  end
+
 end
